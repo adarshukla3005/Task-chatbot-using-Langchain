@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+        h2 {
+            font-size: 18px;
+            font-weight: normal;
+            margin-bottom: 20px;
+        }
+        .chat-container {
+            width: 500px;
+            background: #1E1E1E;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-box {
+            height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        .message {
+            padding: 10px;
+            border-radius: 10px;
+            margin: 5px 0;
+            max-width: 75%;
+            display: flex;
+            align-items: center;
+        }
+        .user-message {
+            background: #0066ff;
+            align-self: flex-end;
+        }
+        .bot-message {
+            background: #333;
+            align-self: flex-start;
+        }
+        .icon {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        .input-container {
+            display: flex;
+            margin-top: 10px;
+        }
+        input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #2a2a2a;
+            color: white;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            background: #0066ff;
+            color: white;
+            border-radius: 5px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>CHATBOT</h1>
+    <h2>Ask anything related to courses on Brainlox</h2>
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box">
+            <div class="message bot-message">
+                <i class="fas fa-robot icon"></i>
+                <span>Ask a question about your documents:</span>
+            </div>
+        </div>
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Type your question here...">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const chatBox = document.getElementById("chat-box");
+            const userInput = document.getElementById("user-input");
+            const sendButton = document.getElementById("send-button");
+
+            sendButton.addEventListener("click", sendMessage);
+            userInput.addEventListener("keypress", function(event) {
+                if (event.key === "Enter") sendMessage();
+            });
+
+            function sendMessage() {
+                const userMessage = userInput.value.trim();
+                if (userMessage === "") return;
+
+                // Display user message
+                const userMessageDiv = document.createElement("div");
+                userMessageDiv.classList.add("message", "user-message");
+                userMessageDiv.innerHTML = `<span>${userMessage}</span> <i class="fas fa-user icon"></i>`;
+                chatBox.appendChild(userMessageDiv);
+                chatBox.scrollTop = chatBox.scrollHeight;
+
+                // Send message to backend
+                fetch("http://127.0.0.1:5000/chat", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message: userMessage })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const botMessageDiv = document.createElement("div");
+                    botMessageDiv.classList.add("message", "bot-message");
+                    botMessageDiv.innerHTML = `<i class="fas fa-robot icon"></i> <span>${data.response}</span>`;
+                    chatBox.appendChild(botMessageDiv);
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                    userInput.value = "";
+                })
+                .catch(error => console.error("Error communicating with server:", error));
+            }
+        });
+    </script>
+</body>
+</html>
