@@ -1,16 +1,5 @@
 # Task-chatbot-using-Langchain
 
-# Brainlox Chatbot
-
-A smart chatbot that answers questions related to courses offered on Brainlox. Built with Flask, Langchain, Hugging Face, and powerful NLP models, this web application allows users to interact with extracted data from Brainlox's technical courses.
-
-## 🚀 Features
-
-- **Ask Questions**: Users can ask anything related to Brainlox courses, and the chatbot responds using an advanced NLP-powered backend.
-- **Real-Time Response**: Receive instant replies to your queries with minimal latency, thanks to Flask and Hugging Face models.
-- **Dynamic Data Extraction**: Extracts course data directly from the Brainlox website for up-to-date responses.
-- **Sleek UI**: Simple, intuitive, and responsive design for an engaging user experience.
-
 ## 🛠️ Technologies Used
 
 - **Flask**: Lightweight backend server for handling API requests.
