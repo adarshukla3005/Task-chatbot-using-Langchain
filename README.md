@@ -1,6 +1,7 @@
 # Task-chatbot-using-Langchain
 
-https://github.com/user-attachments/assets/95119017-00b0-4974-aca2-7cef9f4417ea
+![AI_Chatbot](https://github.com/user-attachments/assets/bebaef03-b707-490a-9940-f45472b472a5)
+
 
 ## 🛠️ Technologies Used
 
