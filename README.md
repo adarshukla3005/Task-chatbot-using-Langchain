@@ -28,5 +28,19 @@ Make sure you have Python 3.x installed, along with these packages:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/brainlox-chatbot.git
-   cd brainlox-chatbot
+   git clone https://github.com/adarshukla3005/Task-chatbot-using-Langchain.git
+   cd Task-chatbot-using-Langchain
+   
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+
+3. Set up your .env file with your HF_API_TOKEN:
+   ```bash
+   HF_API_TOKEN=your_huggingface_token_here
+
+4. Run the Flask server:
+   ```bash
+   python app.py
+
+5. Open the app in your browser at http://localhost:5000
