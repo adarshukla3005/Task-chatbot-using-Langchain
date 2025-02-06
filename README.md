@@ -26,6 +26,7 @@ Make sure you have Python 3.x installed, along with these packages:
 - BeautifulSoup
 - dotenv
 - flask_cors
+- googleGenerativeAI
 
 ### Installation
 
@@ -44,6 +45,7 @@ Make sure you have Python 3.x installed, along with these packages:
 
 4. Run the Flask server:
    ```bash
-   python app.py
+   python file.py    ----- MODEL using Gemini Pro LLM Model
+   python main.py    ----- MODEL using Facebook BART Model
 
 5. Open the app in your browser at http://localhost:5000
